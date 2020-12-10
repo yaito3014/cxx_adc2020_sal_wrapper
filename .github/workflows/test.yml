@@ -1,0 +1,16 @@
+name: test
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup
+        run: |
+          sudo apt update
+          sudo apt install -y build-essential
+          sudo apt install -y g++-10
+          sudo ln -s $(which g++-10) /usr/local/bin/g++
+      - uses: actions/checkout@v2
+      - name: run test
+        run: |
+          make test
